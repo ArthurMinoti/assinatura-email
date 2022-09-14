@@ -38,7 +38,6 @@
              data-callback="handleCredentialResponse"
              data-auto_prompt="false">
         </div>
-
         <div class="g_id_signin"
              data-type="standard"
              data-shape="rectangular"
@@ -47,18 +46,17 @@
              data-size="large"
              data-logo_alignment="left">
         </div>
-        <div id="email"></div>
+
         <script>
-            function handleCredentialResponse(response){
+            function handleCredentialResponse (response) {
                 //a credencial vem criptografada
                 let decoded = parseJwt(response.credential);
 
                 const id = decoded.sub;
                 const name = decoded.name;
                 const email = decoded.email;
-                console.log("Email: " + email);
 
-                document.getElementById("email").innerHTML = getSignature(email);
+                getSignature(email);
             }
 
             function parseJwt (token) {
@@ -71,24 +69,19 @@
                 return JSON.parse(jsonPayload);
             }
 
-            function getSignature(email){
-                let response;
+            function getSignature (email) {
                 $.ajax({
-                    type: "POST",
-                    url: "../controller/gerar_ass_dao.php",
-                    data: {email : email},
-                    success: function (res){
-                        response = res;
-                    },
-                    error: function (request, error){
-                        console.error("Bad Arguments!" + arguments);
-                        alert("Erro: " + error);
-                    }
-                });
-                return response;
+                    method: "POST",
+                    url: "https://assinatura.baciaspcj.org.br/controller/gerar_ass_dao.php",
+                    data: {email : email}
+                })
+                    .done(function (response) {
+                        document.getElementById("email").innerHTML = String(response);
+                    })
             }
         </script>
         <a class="btn btn-outline-primary" href="login.php" role="button">Área Interna</a><br><br><br>
+        <br><br><div id="email"></div>
     </div>
 </body>
 </html>
@@ -106,6 +99,5 @@
 https://developers.google.com/identity/protocols/oauth2/javascript-implicit-flow#oauth-2.0-endpoints_4
 https://developers.google.com/identity/gsi/web => principal code source
 https://developers.google.com/identity/gsi/web/tools/configurator
-https://code-boxx.com/call-php-file-from-javascript/
-novo arquivo
+https://code.tutsplus.com/tutorials/how-to-call-a-php-function-from-javascript--cms-36508
 -->

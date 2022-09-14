@@ -1,12 +1,16 @@
 <?php
+	header("Content-type: text/plain");
+
 	include_once("../Controller/connection_bd.php");
 
 	$c = new connection_bd();
 	$conn = $c -> openConnection();
 
-	$email = $_POST['email'];
-//	$email = "arthur.minoti@agencia.baciaspcj.org.br";
+//	$email = $_POST['email'];
+	$email = "arthur.minoti@agencia.baciaspcj.org.br";
 	$Id = 0;
+
+	echo '<script>console.log("Email :" + ' . $email . ');</script>';
 
 	$sql_email = 'SELECT id_user_ass FROM tbl_user_ass WHERE email_user_ass = $1';
 	$arr = array($email);
@@ -17,7 +21,9 @@
 		$rowcoord = pg_fetch_array($query, 0, PGSQL_NUM);
 		$Id = $rowcoord[0];
 	}
-
+	else{
+		exit();
+	}
 
 	$sql= 'SELECT "isCoordenador" FROM tbl_user_ass WHERE id_user_ass = $1';
 	$arr = array($Id);
@@ -67,7 +73,7 @@
 			echo $email . "<br>";
 			echo $telefone . "<br>";
 			echo "www.agencia.baciaspcj.org.br <br>";
-			echo "<img src='Logo_pcj.png' alt='Agência das Bacias PCJ' width='246' height='123'>";
+			echo "<img src='../view/Logo_pcj.png' alt='Agência das Bacias PCJ' width='246' height='123'>";
 		}
 	}
 	else if($isCoordenador == "f"){
