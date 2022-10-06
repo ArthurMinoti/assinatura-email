@@ -67,7 +67,6 @@
                 </div>
         </form>
         <br><br>
-        <h6><a href="senha.php" role="button">Enqueci a senha</a></h6><!--TODO terminar de configurar recuperação de de senha-->
     </div>
 </div>
 </body>
