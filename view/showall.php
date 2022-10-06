@@ -21,7 +21,7 @@
 <body>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="#">Sistema de Assinatura de Emails</a>
+		<a class="navbar-brand" href="../view/index.php">Sistema de Assinatura de Emails</a>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item">

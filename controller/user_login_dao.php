@@ -16,11 +16,8 @@
 
 	            $sql = "SELECT id_user_login FROM tbl_user_login WHERE usuario_user_login = $1 AND senha_user_login = $2 LIMIT 1";
 				$array = array($login, $senha);
-				/*pg_prepare($conn, 'login', $sql);
-				$query = pg_execute($conn, 'login', $array);*/
 
 	            $query = pg_query_params($conn, $sql, $array);
-
 				$row = pg_fetch_assoc($query);
 
                 if($row){
@@ -45,7 +42,7 @@
         }
 
 		/* Essa função vai verificar se há um usuário logado
-		 * Se houver um usuário ogado e sua sessão for mais velha do que 10 minutos ele pede para fazer login novamente
+		 * Se houver um usuário logado e sua sessão for mais velha do que 10 minutos ele pede para fazer login novamente
 		 */
         public function verifyLoginState(): bool{
 	        include_once("../controller/session_handler.php");

@@ -2,17 +2,17 @@
     class session_handler{
         //função para iniciar a sessão
         function start_session(): void{
-            $this->verifyOpenSession();
+            $this -> verifyOpenSession();
 
             //não deixa utilizar ID de sessão antigos
-            if (!empty($_SESSION['deleted_time']) && $_SESSION['deleted_time'] > time() - 180){
+            if (!empty($_SESSION['deleted_time']) && $_SESSION['deleted_time'] > time() - 600){
                 $this -> regenerate_session_id();
             }
         }
 
         //função para regenerar o id da sessão
         function regenerate_session_id(): void{
-            $this->verifyOpenSession();
+            $this -> verifyOpenSession();
 
             //utiliza um prefixo pré definido
             $newid = session_create_id('email-signature');
@@ -33,12 +33,12 @@
             ini_set('session.use_strict_mode', 1);
 
             //inicia a sessão
-            $this -> start_session();
+	        session_start();
         }
 
         //função para limpar todas as variáveis
         function clear_variables(): void{
-            $this->verifyOpenSession();
+            $this -> verifyOpenSession();
 
             session_unset();
             $this -> regenerate_session_id();
@@ -46,7 +46,7 @@
 
         //função para limpar e parar a sessão
         function end_session(): void{
-            $this->verifyOpenSession();
+            $this -> verifyOpenSession();
 
             session_unset();
             session_destroy();

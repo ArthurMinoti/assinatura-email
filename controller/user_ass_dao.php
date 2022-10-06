@@ -37,8 +37,7 @@ class user_ass_dao{
 				INNER JOIN tbl_setor AS s ON u.id_setor_user_ass = s.id_setor 
 				INNER JOIN tbl_ramal AS r ON u.id_ramal_user_ass = r.id_ramal 
 				INNER JOIN tbl_empresa AS e ON u.id_empresa_user_ass = e.id_empresa ';
-		$query = pg_query($conn, $sql);
-		return $query;
+		return pg_query($conn, $sql);
 	}
 
 	public function getNomeCoord($coord){
@@ -47,14 +46,16 @@ class user_ass_dao{
 
 		$conn = $c -> openConnection();
 
-		$sql = 'SELECT nome_user_ass FROM tbl_user_ass where id_user_ass = '. $coord;
-		$query = pg_query($conn, $sql);
+		$sql = 'SELECT nome_user_ass FROM tbl_user_ass where id_user_ass = $1';
+		$arr = array($coord);
+
+		$query = pg_query_params($conn, $sql, $arr);
 		$row = pg_fetch_assoc($query);
 
 		return $row['nome_user_ass'];
 	}
 
-	public function deleteUser($id){
+	/*public function deleteUser($id){
 		include_once('connection_bd.php');
 		$c = new connection_bd();
 
@@ -64,5 +65,24 @@ class user_ass_dao{
 
 		pg_prepare();
 		pg_execute();
+	}*/
+
+	public function verificaEmail($email): int{
+		include_once("connection_bd.php");
+		$c = new connection_bd();
+		$conn = $c -> openConnection();
+		$id = 0;
+
+		$sql = 'select id_user_ass from tbl_user_ass where email_user_ass = $1';
+		$array = array($email);
+
+		$query = pg_query_params($conn, $sql, $array);
+		$row = pg_fetch_assoc($query);
+
+		if($row){
+			$rowcoord = pg_fetch_array($query, 0, PGSQL_NUM);
+			$id = $rowcoord[0];
+		}
+		return $id;
 	}
 }
