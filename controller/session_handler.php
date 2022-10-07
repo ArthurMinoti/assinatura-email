@@ -36,7 +36,7 @@
 	        session_start();
         }
 
-        //função para limpar todas as variáveis
+        //função para limpar todas as variáveis da sessão atual
         function clear_variables(): void{
             $this -> verifyOpenSession();
 

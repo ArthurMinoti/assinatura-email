@@ -12,7 +12,6 @@
 
 	$email = $_POST['email'];
 
-	//$email = "arthur.minoti@agencia.baciaspcj.org.br";
 	$id = $u -> verificaEmail($email);
 	if($id == 0){
 		echo("Inexistente");
@@ -35,7 +34,7 @@
 		echo("Erro");
 		exit;
 	}
-
+//diferencia se é coordenador ou não, pois tem uma diferença entre o coordenador e o colaborador:
 	if($isCoordenador == "t"){
 		$sql = 'SELECT u.nome_user_ass, u.email_user_ass, u.telefone_user_ass, c.cargo, s.setor, r.ramal, e.empresa 
                   FROM tbl_user_ass AS u 

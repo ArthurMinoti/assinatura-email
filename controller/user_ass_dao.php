@@ -3,6 +3,7 @@
 
 class user_ass_dao{
 
+	//insere no banco colaboradores
     public function insertNewNotCoord($nome, $email, $telefone, $coord, $cargo, $setor, $ramal, $empresa): void{
         include_once("connection_bd.php");
         $c = new connection_bd();
@@ -14,6 +15,7 @@ class user_ass_dao{
 		pg_execute($conn, "isNotCoord", array($nome, $email, $telefone, 0, $coord, $cargo, $setor, $ramal, $empresa));
     }
 
+	//insere no banco coordenadores
 	public function insertNewCoord($nome, $email, $telefone, $cargo, $setor, $ramal, $empresa): void{
 		include_once("connection_bd.php");
 		$c = new connection_bd();
@@ -25,6 +27,7 @@ class user_ass_dao{
 		pg_execute($conn, "isCoord", array($nome, $email, $telefone, 1, $cargo, $setor, $ramal, $empresa));
 	}
 
+	//select de todos os emails cadastrados
 	public function selectUser(): bool|PgSql\Result{
 		include_once('connection_bd.php');
 		$c = new connection_bd();
@@ -40,6 +43,7 @@ class user_ass_dao{
 		return pg_query($conn, $sql);
 	}
 
+	//transforma o id do coordenador no nome
 	public function getNomeCoord($coord){
 		include_once('connection_bd.php');
 		$c = new connection_bd();
@@ -55,18 +59,7 @@ class user_ass_dao{
 		return $row['nome_user_ass'];
 	}
 
-	/*public function deleteUser($id){
-		include_once('connection_bd.php');
-		$c = new connection_bd();
-
-		$conn = $c -> openConnection();
-
-		$sql = 'delete from tbl_user_ass where id_user_ass = ?';
-
-		pg_prepare();
-		pg_execute();
-	}*/
-
+	//faz a verificação do email na hora de gerar a assinatura
 	public function verificaEmail($email): int{
 		include_once("connection_bd.php");
 		$c = new connection_bd();
