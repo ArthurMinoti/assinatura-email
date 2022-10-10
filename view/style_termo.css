@@ -1,0 +1,36 @@
+.texto {
+    box-sizing: border-box;
+    margin-top: 0px;
+    margin-bottom: 1rem;
+    font-size: 16px;
+    color: #576d96;
+    font-family: Montserrat, sans-serif;
+    background-color: #ffffff;
+}
+
+.titulo {
+    box-sizing: border-box;
+    margin: 0px;
+    line-height: 1.2;
+    font-size: 20px;
+    letter-spacing: -0.05em;
+    color: #576d96;
+    padding-bottom: 20px;
+    font-family: Montserrat, sans-serif;
+    background-color: #ffffff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

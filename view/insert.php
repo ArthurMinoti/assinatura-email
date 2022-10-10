@@ -7,6 +7,7 @@
 
     $session -> start_session();
     $loginState = $uldao -> verifyLoginState();
+
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +44,6 @@
 </nav>
 <div class="container">
 <div class="shadow-lg p-3 mb-5 bg-body rounded">
-
   <span class="title">Cadastro de Emails</span>
   <br><br>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
