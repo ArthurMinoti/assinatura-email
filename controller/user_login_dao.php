@@ -4,7 +4,7 @@
         public function validadeLogin(): bool{
             include_once("../controller/session_handler.php");
             $session = new session_handler();
-            $session -> start_session();
+            $session -> startSession();
 
             $login = $_SESSION['login'];
             $senha = $_SESSION['senha'];
@@ -20,7 +20,7 @@
 				$row = pg_fetch_assoc($query);
 
 				if($row && password_verify($senha, $row['senha_user_login'])){
-					$session -> regenerate_session_id();
+					$session -> regenerateSessionId();
 					$_SESSION['state'] = true;
 					$_SESSION['timeout'] = time();
 
@@ -40,19 +40,18 @@
 				}
             }
             else{
-                $session -> clear_variables();
+                $session -> clearVariables();
 				return false;
             }
 
         }
 
-		/* Essa função vai verificar se há um usuário logado
-		 * Se houver um usuário logado e sua sessão for mais velha do que 10 minutos ele pede para fazer login novamente
-		 */
+//		Essa função vai verificar se há um usuário logado
+//		Se houver um usuário logado e sua sessão for mais velha do que 10 minutos ele pede para fazer login novamente
         public function verifyLoginState(): bool{
 	        include_once("../controller/session_handler.php");
 	        $session = new session_handler();
-	        $session -> start_session();
+	        $session -> startSession();
 	        $loginState = false;
 
 	        $state = $_SESSION['state'];
@@ -64,13 +63,13 @@
 		        $loginState = true;
 	        }
 	        else{
-		        $session -> clear_variables();
+		        $session -> clearVariables();
 		        header("Location: ../view/login.php");
 	        }
 	        return $loginState;
         }
 
-		public function hashcah(){
+		public function hashcash(): void{
 			if($_SESSION['loginCount'] < 10){
 				$options = [
 					'cost' => 10 // ~0,005 segundos de carregamento
@@ -88,7 +87,7 @@
 			}
 			else{
 				$options = [
-					'cost' => 20 //
+					'cost' => 20
 				];
 			}
 

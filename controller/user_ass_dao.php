@@ -1,6 +1,4 @@
 <?php
-	//https://hotexamples.com/examples/-/-/pg_result_error/php-pg_result_error-function-examples.html
-
 class user_ass_dao{
 
 	//insere no banco colaboradores
@@ -8,11 +6,12 @@ class user_ass_dao{
         include_once("connection_bd.php");
         $c = new connection_bd();
         $conn = $c -> openConnection();
-		$query = 'INSERT INTO public.tbl_user_ass(nome_user_ass, email_user_ass, telefone_user_ass, last_update_user_ass, "isCoordenador", id_coordenador, id_cargo_user_ass, id_setor_user_ass, id_ramal_user_ass, id_empresa_user_ass) VALUES ($1, $2, $3, NOW(), $4, $5, $6, $7, $8, $9)';
+		$sql = 'INSERT INTO public.tbl_user_ass(nome_user_ass, email_user_ass, telefone_user_ass, last_update_user_ass, "isCoordenador", id_coordenador, id_cargo_user_ass, id_setor_user_ass, id_ramal_user_ass, id_empresa_user_ass) VALUES ($1, $2, $3, NOW(), $4, $5, $6, $7, $8, $9)';
 
-		pg_prepare($conn, 'isNotCoord', $query) or die("Erro na execução da query {$query}, contate a TI");
+//		pg_prepare($conn, 'isNotCoord', $sql) or die("Erro na execução da query {$sql}, contate a TI");
+//		pg_execute($conn, "isNotCoord", array($nome, $email, $telefone, 0, $coord, $cargo, $setor, $ramal, $empresa));
 
-		pg_execute($conn, "isNotCoord", array($nome, $email, $telefone, 0, $coord, $cargo, $setor, $ramal, $empresa));
+		pg_query_params($conn, $sql, array($nome, $email, $telefone, 0, $coord, $cargo, $setor, $ramal, $empresa));
     }
 
 	//insere no banco coordenadores
@@ -20,11 +19,12 @@ class user_ass_dao{
 		include_once("connection_bd.php");
 		$c = new connection_bd();
 		$conn = $c -> openConnection();
-		$query = 'INSERT INTO public.tbl_user_ass(nome_user_ass, email_user_ass, telefone_user_ass, last_update_user_ass, "isCoordenador", id_cargo_user_ass, id_setor_user_ass, id_ramal_user_ass, id_empresa_user_ass) VALUES ($1, $2, $3, NOW(), $4, $5, $6, $7, $8)';
+		$sql = 'INSERT INTO public.tbl_user_ass(nome_user_ass, email_user_ass, telefone_user_ass, last_update_user_ass, "isCoordenador", id_cargo_user_ass, id_setor_user_ass, id_ramal_user_ass, id_empresa_user_ass) VALUES ($1, $2, $3, NOW(), $4, $5, $6, $7, $8)';
 
-		pg_prepare($conn, 'isCoord', $query) or die("Erro na execução da query {$query}, contate a TI");
+//		pg_prepare($conn, 'isCoord', $sql) or die("Erro na execução da query {$sql}, contate a TI");
+//		pg_execute($conn, "isCoord", array($nome, $email, $telefone, 1, $cargo, $setor, $ramal, $empresa));
 
-		pg_execute($conn, "isCoord", array($nome, $email, $telefone, 1, $cargo, $setor, $ramal, $empresa));
+		pg_query_params($conn, $sql, array($nome, $email, $telefone, 1, $cargo, $setor, $ramal, $empresa));
 	}
 
 	//select de todos os emails cadastrados
@@ -40,6 +40,7 @@ class user_ass_dao{
 				INNER JOIN tbl_setor AS s ON u.id_setor_user_ass = s.id_setor 
 				INNER JOIN tbl_ramal AS r ON u.id_ramal_user_ass = r.id_ramal 
 				INNER JOIN tbl_empresa AS e ON u.id_empresa_user_ass = e.id_empresa ORDER BY u.nome_user_ass';
+
 		return pg_query($conn, $sql);
 	}
 
@@ -53,8 +54,7 @@ class user_ass_dao{
 		$sql = 'SELECT nome_user_ass FROM tbl_user_ass where id_user_ass = $1';
 		$arr = array($coord);
 
-		$query = pg_query_params($conn, $sql, $arr);
-		$row = pg_fetch_assoc($query);
+		$row = pg_fetch_assoc(pg_query_params($conn, $sql, $arr));
 
 		return $row['nome_user_ass'];
 	}
@@ -77,5 +77,38 @@ class user_ass_dao{
 			$id = $rowcoord[0];
 		}
 		return $id;
+	}
+
+	public function insertRamal($ramal, $sala): void{
+		include_once("connection_bd.php");
+
+		$c = new connection_bd();
+		$conn = $c -> openConnection();
+
+		$sql = 'INSERT INTO public.tbl_ramal(ramal, sala) VALUES ($1, $2)';
+
+		pg_query_params($conn, $sql, array($ramal, $sala));
+	}
+
+	public function insertEmpresa($empresa): void{
+		include_once("connection_bd.php");
+
+		$c = new connection_bd();
+		$conn = $c -> openConnection();
+
+		$sql = 'INSERT INTO public.tbl_empresa(empresa) VALUES ($1)';
+
+		pg_query_params($conn, $sql, array($empresa));
+	}
+
+	public function insertCargo($cargo): void{
+		include_once("connection_bd.php");
+
+		$c = new connection_bd();
+		$conn = $c -> openConnection();
+
+		$sql = 'INSERT INTO public.tbl_cargo(cargo) VALUES ($1)';
+
+		pg_query_params($conn, $sql, array($cargo));
 	}
 }

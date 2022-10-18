@@ -5,7 +5,7 @@
 	$session = new session_handler();
 	$uldao = new user_login_dao();
 
-	$session -> start_session();
+	$session -> startSession();
 	$loginState = $uldao -> verifyLoginState();
 ?>
 
@@ -25,7 +25,7 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item">
-					<a class="nav-link" href="insert.php">Inserir Colaborador</a>
+					<a class="nav-link" href="inserir.php">Inserir Colaborador</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link active" aria-current="page" href="exibir.php">Exibir Todos</a>
@@ -33,6 +33,9 @@
 				<li class="nav-item">
 					<a class="nav-link" href="excluir.php">Excluir</a>
 				</li>
+                <li class="nav-item">
+                    <a class="nav-link" href="inserirCER.php">Inserir Cargo, Empresa ou Ramal</a>
+                </li>
 			</ul>
 		</div>
 	</div>
@@ -61,7 +64,7 @@
             </thead>
 
 <?php
-    include_once ("../controller/user_ass_dao.php");
+	require_once ($_SERVER['DOCUMENT_ROOT'] . "/controller/user_ass_dao.php");
     $uadao = new user_ass_dao();
     $result = $uadao -> selectUser();
 

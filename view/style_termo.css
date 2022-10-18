@@ -1,6 +1,6 @@
 .texto {
     box-sizing: border-box;
-    margin-top: 0px;
+    margin-top: 0;
     margin-bottom: 1rem;
     font-size: 16px;
     color: #576d96;
@@ -10,7 +10,7 @@
 
 .titulo {
     box-sizing: border-box;
-    margin: 0px;
+    margin: 0;
     line-height: 1.2;
     font-size: 20px;
     letter-spacing: -0.05em;

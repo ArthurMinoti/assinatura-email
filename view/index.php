@@ -38,7 +38,6 @@
             Gerador de assinaturas de email - Selecione a opção desejada:
         </div>
 
-
     <br><br>
         <div style="text-align: center;">
             <button class="btn btn-primary center" type="button" data-bs-toggle="collapse" data-bs-target="#renovar" aria-expanded="false" aria-controls="collapseExample">

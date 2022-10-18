@@ -5,8 +5,8 @@
     $session = new session_handler();
     $uldao = new user_login_dao();
 
-    $session -> start_session();
-    //$loginState = $uldao -> verifyLoginState();
+    $session -> startSession();
+    $loginState = $uldao -> verifyLoginState();
 
 ?>
 
@@ -26,7 +26,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="insert.php">Inserir Colaborador</a>
+                    <a class="nav-link active" aria-current="page" href="inserir.php">Inserir Colaborador</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="exibir.php">Exibir Todos</a>
@@ -35,53 +35,49 @@
                     <a class="nav-link" href="excluir.php">Excluir</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="inserir2.php">Inserir Setor, Cargo, Empresa ou Ramal</a>
+                    <a class="nav-link" href="inserirCER.php">Inserir Cargo, Empresa ou Ramal</a>
                 </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Busca" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Buscar Colaborador</button>
-            </form>
         </div>
     </div>
 </nav>
 <div class="container">
 <div class="shadow-lg p-3 mb-5 bg-body rounded">
-      <span class="title">Cadastro de Emails</span>
+      <span class="title">Cadastro de Colaboradores</span>
       <br><br>
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
         <!--Inserção do email do usuário-->
             <div class="input-group mb-3">
-                <input type="text" name="email" class="form-control" placeholder="Email da agência" aria-label="Recipient's username" aria-describedby="basic-addon2" required>
+                <input type="text" name="email" class="form-control" placeholder="Email da agência" aria-label="Email" aria-describedby="basic-addon2" required>
                 <span class="input-group-text" id="basic-addon2">@agencia.baciaspcj.org.br</span>
             </div><br>
 
             <!--Inserção do nome do usuário-->
             <div class="input-group mb-3">
                   <span class="input-group-text" id="basic-addon2">Nome</span>
-                  <input type="text" name="nome" class="form-control" placeholder="Nome" aria-label="Recipient's username" aria-describedby="basic-addon2" required>
+                  <input type="text" name="nome" class="form-control" placeholder="Nome" aria-label="Nome" aria-describedby="basic-addon2" required>
             </div><br>
 
             <!--Inserção do telefone-->
             <div class="input-group mb-3">
                   <span class="input-group-text" id="basic-addon2">Telefone</span>
-                  <input type="text" name="telefone" class="form-control" placeholder="Telefone" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                  <input type="text" name="telefone" class="form-control" placeholder="Telefone" aria-label="Telefone" aria-describedby="basic-addon2">
             </div><br>
 
             <!--selecão do coordenador-->
             <span class="input-group-text" id="basic-addon2">É coordenador?</span>
             <div class="form-check form-check-inline">
-                  <input id="sim" class="form-check-input" type="radio" name="radio" value="1" required>
+                  <input class="form-check-input" type="radio" name="radio" value="1" required>
                   <label class="form-check-label" for="inlineRadio1">Sim </label>
             </div>
             <div class="form-check form-check-inline">
-                  <input id="nao" class="form-check-input" type="radio" name="radio" value="2" required>
+                  <input class="form-check-input" type="radio" name="radio" value="2" required>
                   <label class="form-check-label" for="inlineRadio2">Não</label>
             </div><br><br>
 
             <!--Select do coordenador-->
-            <div id="coord" class="input-group mb-3" style="display: none">
+            <div id="coord" class="input-group mb-3">
                   <label class="input-group-text" for="inputGroupSelect01">Coordenador</label>
                   <select class="form-select" name ="coord" required>
                         <option selected>Selecionar... (Caso seja coordenador, desconsidere)</option>

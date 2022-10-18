@@ -1,7 +1,7 @@
 <?php
 	require_once("../controller/session_handler.php");
 	$session = new session_handler();
-	$session -> start_session();
+	$session -> startSession();
 
 	if (isset($_SESSION['loginCount'])){
 		$_SESSION['loginCount']++;
@@ -22,12 +22,12 @@
 	    $resp = $uldao -> validadeLogin();
 
         if(!$resp){
-	        $uldao -> hashcah();
+	        $uldao -> hashcash();
         }
 
     }
     else{
-        $session -> end_session();
+        $session -> endSession();
     }
 
     function cleanInput($value): string{
