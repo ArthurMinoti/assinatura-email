@@ -63,7 +63,7 @@
 			echo $email . "<br>";
 			echo $telefone . "<br>";
 			echo "www.agencia.baciaspcj.org.br <br>";
-			echo "<img src='https://www.agencia.baciaspcj.org.br/wp-content/uploads/2020/11/AGÊNCIA-PCJ.png' alt='Agência das Bacias PCJ' width='246' height='123'>";
+			echo "<img src='https://agencia.baciaspcj.org.br/wp-content/uploads/assinatura_emails.png' alt='Agência das Bacias PCJ' width='246' height='123'>";
 		}
 	}
 	else if($isCoordenador == "f"){
@@ -90,7 +90,13 @@
 			$empresa = $row[7];
 
 			echo "<font color='#002060'><b>" . $nome . "</b></font><br>";
-			echo $cargo . " " . $setor . "<br>";
+
+			if($cargo == "Outro"){
+				echo $setor . "<br>";
+			}
+			else{
+				echo $cargo . " " . $setor . "<br>";
+			}
 
 			if($empresa == "Agência Bacias PCJ"){
 				echo $empresa . "<br>";
@@ -131,11 +137,11 @@
 				echo $email . "<br>";
 				echo $telefone . "<br>";
 				echo "www.agencia.baciaspcj.org.br <br>";
-				echo "<img src='https://www.agencia.baciaspcj.org.br/wp-content/uploads/2020/11/AGÊNCIA-PCJ.png' alt='Agência das Bacias PCJ' width='246' height='123'>";
+				echo "<img src='https://agencia.baciaspcj.org.br/wp-content/uploads/assinatura_emails.png' alt='Agência das Bacias PCJ' width='246' height='123'>";
 
 			}
 		}
 	}
 	else{
-		echo "Erro";
+		echo "Erro"; //TODO informa erro ao usuário
 	}

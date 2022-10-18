@@ -25,19 +25,15 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item">
-					<a class="nav-link" href="insert.php">Inserir Novo</a>
+					<a class="nav-link" href="insert.php">Inserir Colaborador</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="showall.php">Exibir Todos</a>
+					<a class="nav-link active" aria-current="page" href="exibir.php">Exibir Todos</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="delete.php">Excluir</a>
+					<a class="nav-link" href="excluir.php">Excluir</a>
 				</li>
 			</ul>
-			<form class="d-flex">
-				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success" type="submit">Buscar Colaborador</button>
-			</form>
 		</div>
 	</div>
 </nav>
@@ -47,7 +43,7 @@
 		<span class="title">Ebibição de Todos</span>
 		<br><br>
         <div class="table">
-        <table class="table table-hover">
+        <table class="table table-hover table-responsive">
             <thead>
             <tr>
                 <th scope="col">#</th>
@@ -117,6 +113,7 @@
 ?>
         </table>
         </div>
+        <a class="btn btn-outline-primary" href="login.php" role="button">Sair</a><br>
 	</div>
 </div>
 </body>

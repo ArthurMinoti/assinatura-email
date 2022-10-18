@@ -25,13 +25,13 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item">
-					<a class="nav-link" href="insert.php">Inserir Novo</a>
+					<a class="nav-link" href="insert.php">Inserir Colaborador</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="showall.php">Exibir Todos</a>
+					<a class="nav-link" href="exibir.php">Exibir Todos</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="delete.php">Excluir</a>
+					<a class="nav-link active" aria-current="page" href="excluir.php">Excluir</a>
 				</li>
 			</ul>
 			<form class="d-flex">
@@ -126,6 +126,7 @@
 				?>
 			</table>
 		</div>
+        <a class="btn btn-outline-primary" href="login.php" role="button">Sair</a><br>
 	</div>
 </div>
 </body>

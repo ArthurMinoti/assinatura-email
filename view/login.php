@@ -3,6 +3,12 @@
 	$session = new session_handler();
 	$session -> start_session();
 
+	if (isset($_SESSION['loginCount'])){
+		$_SESSION['loginCount']++;
+	} else {
+		$_SESSION['loginCount'] = 0;
+	}
+
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         include_once('../controller/user_login_dao.php');
         $uldao = new user_login_dao();
@@ -13,21 +19,22 @@
         $_SESSION['login'] = $login;
         $_SESSION['senha'] = $senha;
 
-        echo $login;
-        echo $senha;
+	    $resp = $uldao -> validadeLogin();
 
-        $uldao -> validadeLogin();
+        if(!$resp){
+	        $uldao -> hashcah();
+        }
+
     }
     else{
         $session -> end_session();
     }
 
     function cleanInput($value): string{
+	    $value = htmlspecialchars($value); //transforma caracteres especias em comando htmlz
         $value = trim($value); //remove comandos de formatação como \n, \t, etc
         $value = stripslashes($value); //remove barras \
-        $value = htmlspecialchars($value); //transforma caracteres especias em comando html
-        $value = strval($value); //transforma para string
-        return $value;
+        return strval($value); //transforma para string
     }
 ?>
 
@@ -71,4 +78,3 @@
 </div>
 </body>
 </html>
-

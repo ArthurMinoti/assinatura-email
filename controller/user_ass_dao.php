@@ -39,7 +39,7 @@ class user_ass_dao{
 				INNER JOIN tbl_cargo AS c ON u.id_cargo_user_ass = c.id_cargo 
 				INNER JOIN tbl_setor AS s ON u.id_setor_user_ass = s.id_setor 
 				INNER JOIN tbl_ramal AS r ON u.id_ramal_user_ass = r.id_ramal 
-				INNER JOIN tbl_empresa AS e ON u.id_empresa_user_ass = e.id_empresa ';
+				INNER JOIN tbl_empresa AS e ON u.id_empresa_user_ass = e.id_empresa ORDER BY u.nome_user_ass';
 		return pg_query($conn, $sql);
 	}
 
