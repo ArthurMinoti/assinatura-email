@@ -37,6 +37,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="inserirCER.php">Inserir Cargo, Empresa ou Ramal</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="gerar.php">Gerar Assinatura</a>
+                </li>
             </ul>
         </div>
     </div>

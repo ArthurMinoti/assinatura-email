@@ -37,6 +37,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="inserirCER.php">Inserir Cargo, Empresa ou Ramal</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="gerar.php">Gerar Assinatura</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -79,7 +82,7 @@
             <!--Select do coordenador-->
             <div id="coord" class="input-group mb-3">
                   <label class="input-group-text" for="inputGroupSelect01">Coordenador</label>
-                  <select class="form-select" name ="coord" required>
+                  <select class="form-select" name="coord" required>
                         <option selected>Selecionar... (Caso seja coordenador, desconsidere)</option>
 
 <?php

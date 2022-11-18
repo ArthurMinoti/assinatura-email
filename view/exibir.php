@@ -36,6 +36,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="inserirCER.php">Inserir Cargo, Empresa ou Ramal</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="gerar.php">Gerar Assinatura</a>
+                </li>
 			</ul>
 		</div>
 	</div>
@@ -43,7 +46,7 @@
 <div class="container">
 	<div class="shadow-lg p-3 mb-5 bg-body rounded">
 
-		<span class="title">Ebibição de Todos</span>
+		<span class="title">Exibição de Todos</span>
 		<br><br>
         <div class="table">
         <table class="table table-hover table-responsive">
