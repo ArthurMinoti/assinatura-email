@@ -46,8 +46,7 @@
 		$query = pg_query_params($conn, $sql, $arr);
 		$result = pg_fetch_assoc($query);
 
-		while($result){
-			/** @noinspection DuplicatedCode */
+		if($result){
 			$row = pg_fetch_array($query, 0, PGSQL_NUM);
 			$nome = $row[0];
 			$email = $row[1];
@@ -65,6 +64,10 @@
 			echo "www.agencia.baciaspcj.org.br <br>";
 			echo "<img src='https://agencia.baciaspcj.org.br/wp-content/uploads/assinatura_emails.png' alt='Agência das Bacias PCJ' width='246' height='123'>";
 		}
+		else{
+			echo("Erro");
+			exit;
+		}
 	}
 	else if($isCoordenador == "f"){
 		$sql = 'SELECT u.nome_user_ass, u.email_user_ass, u.telefone_user_ass, u.id_coordenador, c.cargo, s.setor, r.ramal, e.empresa 
@@ -78,7 +81,6 @@
 		$result = pg_fetch_assoc($query);
 
 		if($result){
-			/** @noinspection DuplicatedCode */
 			$row = pg_fetch_array($query, 0, PGSQL_NUM);
 			$nome = $row[0];
 			$email = $row[1];
@@ -122,7 +124,6 @@
 			$result2 = pg_fetch_assoc($query2);
 
 			if($result2){
-				/** @noinspection DuplicatedCode */
 				$row = pg_fetch_array($query2, 0, PGSQL_NUM);
 				$nome = $row[0];
 				$email = $row[1];
@@ -140,6 +141,10 @@
 				echo "<img src='https://agencia.baciaspcj.org.br/wp-content/uploads/assinatura_emails.png' alt='Agência das Bacias PCJ' width='246' height='123'>";
 
 			}
+		}
+		else{
+			echo("Erro");
+			exit;
 		}
 	}
 	else{

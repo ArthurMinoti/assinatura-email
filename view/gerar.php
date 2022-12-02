@@ -90,17 +90,22 @@
 
 
         <button id="action" class="btn btn-outline-primary">Gerar</button>
+        <button id="clean" class="btn btn-outline-primary">Limpar</button>
         <a class="btn btn-outline-primary" href="login.php" role="button">Sair</a><br>
 	</div>
 </div>
 
 <script type="text/javascript">
     document.getElementById("action").addEventListener("click", function (){
-        let email = document.getElementById("nome").value; //TODO terminar configuração
+        let email = document.getElementById("nome").value;
 
         console.log(email);
 
         gerar_ass(email);
+    });
+
+    document.getElementById("clean").addEventListener("click", function (){
+       document.getElementById("ass").innerHTML = "";
     });
 </script>
 

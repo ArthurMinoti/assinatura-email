@@ -55,80 +55,15 @@
             </div>
         </form>
 		<br><br>
-
-
+<!--TODO criar função para gerar a tabela-->
 		<div class="table">
-			<table class="table table-hover">
-				<thead>
-				<tr>
-					<th scope="col">#</th>
-					<th scope="col">Nome</th>
-					<th scope="col">Email</th>
-					<th scope="col">Telefone</th>
-					<th scope="col">Última Atualização</th>
-					<th scope="col">É Coordenador?</th>
-					<th scope="col">Coordenador</th>
-					<th scope="col">Cargo</th>
-					<th scope="col">Setor</th>
-					<th scope="col">Ramal</th>
-					<th scope="col">Empresa</th>
-				</tr>
-				</thead>
+            <?php
+            require_once ($_SERVER['DOCUMENT_ROOT'] . "/controller/view_functions.php");
 
-				<?php
-					/** @noinspection DuplicatedCode */
-					/** @noinspection DuplicatedCode */
-					include_once ("../controller/user_ass_dao.php");
-					$uadao = new user_ass_dao();
-					$result = $uadao -> selectUser();
+            $v = new view_functions();
 
-					if(pg_num_rows($result) > 0){
-						while($row = pg_fetch_assoc($result)){
-							$id = $row['id_user_ass'];
-							$nome = $row['nome_user_ass'];
-							$email = $row['email_user_ass'];
-							$telefone = $row['telefone_user_ass'];
-							$last_update = $row['last_update_user_ass'];
-							$isCoord = $row['isCoordenador'];
-							$coord = $row['id_coordenador'];
-							$cargo = $row['cargo'];
-							$setor = $row['setor'];
-							$ramal = $row['ramal'];
-							$empresa = $row['empresa'];
-
-							if($isCoord == "t"){
-								echo "<tbody>";
-								echo    "<tr>";
-								echo        "<th scope='row'>$id</th>";
-								echo        "<td>$nome</td>";
-								echo        "<td>$email</td>";
-								echo        "<td>$telefone</td>";
-								echo        "<td>$last_update</td>";
-								echo        "<td colspan='2'>Sim</td>";
-							}
-							else{
-								$nome_coor = $uadao -> getNomeCoord($coord);
-								echo "<tbody>";
-								echo    "<tr>";
-								echo        "<th scope='row'>$id</th>";
-								echo        "<td>$nome</td>";
-								echo        "<td>$email</td>";
-								echo        "<td>$telefone</td>";
-								echo        "<td>$last_update</td>";
-								echo        "<td>Não</td>";
-								echo        "<td>$nome_coor</td>";
-							}
-
-							echo        "<td>$cargo</td>";
-							echo        "<td>$setor</td>";
-							echo        "<td>$ramal</td>";
-							echo        "<td>$empresa</td>";
-							echo    "</tr>";
-							echo "</tbody>";
-						}
-					}
-				?>
-			</table>
+            echo $v -> getTable();
+            ?>
 		</div>
         <a class="btn btn-outline-primary" href="login.php" role="button">Sair</a><br>
 	</div>
